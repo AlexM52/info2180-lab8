@@ -22,13 +22,10 @@ if(sizeof($LOOKUP)==0){
       <?php
     }
   }else{
-    $results = msql_query("SELECT * FROM countries WHERE name LIKE '$LOOKUP';");
-    print $results;
-    while ($row = mysql_fetch_array($results)){
-      ?>
-      <li> <?php echo $row["name"]; ?>, ruled by <?php echo $row["head_of_state"]; ?> </li>
+    // Effectively output nothing, so client side still receives a response
+    ?>
+      
       <?php
-    }
   }
 }else{
   $results = mysql_query("SELECT * FROM countries WHERE name LIKE '%$LOOKUP%';");
