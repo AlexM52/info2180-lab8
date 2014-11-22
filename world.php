@@ -30,7 +30,7 @@ if(sizeof($LOOKUP)==0){
         ?>
 <country>
 <name><?php echo $row["name"]; ?></name>
-<ruler><?php echo $row["head_of_state"]; ?></ruler>";
+<ruler><?php echo $row["head_of_state"]; ?></ruler>
 </country>
         <?php
       } ?>
