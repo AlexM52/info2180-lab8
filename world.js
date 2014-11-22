@@ -7,10 +7,11 @@ function lookupClick(){
     //new Ajax.Request("https://2180dev-alexm52.c9.io/webgit/AlexM52.github.io/info2180lab8/world.php?lookup=Jamaica",
     var term = $$('#term')[0].value;
     var all = $$("#all")[0];
+    var formatXML = $$("#format")[0];
     //console.log(all.checked);
     var requestString = "https://2180dev-alexm52.c9.io/webgit/AlexM52.github.io/info2180lab8/world.php";
     var optCnt = 0;
-    if ((term !== '') || (all.checked===true)){
+    if ((term !== '') || (all.checked===true || (formatXML.checked===true))){
         requestString += "?";
     }
     if (term !== ''){
@@ -23,6 +24,12 @@ function lookupClick(){
         }
         requestString += "all="+all.checked;
         optCnt++;
+    }
+    if (formatXML.checked===true){
+        if(optCnt>0){
+            requestString += "&";
+        }
+        requestString += "format="+formatXML.value;
     }
     /*console.log(term!=="");
     if(term !== ""){
@@ -61,7 +68,12 @@ window.alert(ajax.responseXML);
 
 // Inserts appropriate response content into 'results' div
 function updateInfo(ajax){
-    $$("#result")[0].innerHTML = ajax.responseText;
+    var formatXML = $$("#format")[0];
+    if(formatXML.checked){
+        $$("#result")[0].innerHTML = ajax.responseXML;
+    }else{
+        $$("#result")[0].innerHTML = ajax.responseText;
+    }
 }
 
 function ajaxFailure(ajax, exception){
